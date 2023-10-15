@@ -1,0 +1,30 @@
+{
+  "name": "url_shortner",
+  "version": "1.0.0",
+  "description": "Basic Url shotner",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scorcism/utl-shotner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scorcism/utl-shotner/issues"
+  },
+  "homepage": "https://github.com/scorcism/utl-shotner#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
