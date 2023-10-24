@@ -3,9 +3,9 @@ const Url = require('../models/Url');
 
 const getMD5Short = async (req, res) => {
     const { url } = req.body;
-    console.log(url)
 
-    const httpsUrlPattern = /^(https:\/\/)([\w.-]+)(:[0-9]+)?(\/\S*)?$/i;
+    const httpsUrlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    let regex = new RegExp(httpsUrlPattern);
 
     function getMD5(input) {
         const md5Hash = crypto.createHash('md5');
@@ -14,7 +14,7 @@ const getMD5Short = async (req, res) => {
     }
 
     try {
-        if (httpsUrlPattern.test(url)) {
+        if (url.match(regex)) {
 
             let url_check = await Url.findOne({ url: url });
 
