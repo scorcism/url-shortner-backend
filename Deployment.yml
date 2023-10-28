@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-shortner-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shortner
+  template:
+    metadata:
+      labels:
+        app: shortner
+    spec:
+      containers:
+        - name: url-shortner
+          image: scor32k/url_shortner:v2
+          ports:
+            - containerPort: 5000  

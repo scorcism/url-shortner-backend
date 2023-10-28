@@ -1,8 +1,13 @@
 const crypto = require('crypto');
 const Url = require('../models/Url');
+const { log } = require('console');
 
 const getMD5Short = async (req, res) => {
     const { url } = req.body;
+
+    if (!url) {
+        return res.status(400).json({ message: "Please provide an url" })
+    }
 
     const httpsUrlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
     let regex = new RegExp(httpsUrlPattern);
@@ -73,7 +78,24 @@ const getMD5Short = async (req, res) => {
     }
 }
 
+const getUrl = async (req, res) => {
+
+    const { url } = req.body
+    try {
+        const req_url = await Url.findOne({ short: url }, 'url')
+        res.status(200).json({
+            message: req_url
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        })
+    }
+}
+
 
 module.exports = {
     getMD5Short,
+    getUrl
 }

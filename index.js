@@ -3,13 +3,13 @@ const cors = require("cors");
 const dotenv = require('dotenv');
 const { rateLimit } = require('express-rate-limit');
 const connectToMongo = require("./src/config/dbConnect");
-const PORT = 5000 || process.env.PORT;
+const PORT = process.env.PORT ||5000 ;
 dotenv.config();
 
 
 const limiter = rateLimit({
-    windowMs: 60 * 60 * 1000, // 60 minutes
-    limit: 120, // Limit each IP to 120 requests per `window` (here, per 60 minutes).
+    windowMs: 1 * 60 * 1000, // 1 minutes
+    limit: 20, // Limit each IP to 20 requests per `window` (here, per 1 minutes).
     standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
 })
